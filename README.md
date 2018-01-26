@@ -1,5 +1,8 @@
 # getScripts
-Scriptloading with jQuery getScript for multiple scripts
+Scriptloading with jQuery getScript for multiple scripts. 
+
+* Uses jQuery scrip loader.
+* Keeps track of loaded scripts (no double script load)
 
 ### usage:
 
@@ -15,3 +18,5 @@ $("#block").on('ready', function (e, failed) {
     // Do something with loaded scripts.
 });
  ````
+
+There's no support for this plug-in.
