@@ -15,8 +15,18 @@ $("#block").on('ready', function (e, failed) {
     // @var Event e
     // @var array failed Array with scripts not loaded. mostly 404's
     
+    // @var this The actual DomNode
     // Do something with loaded scripts.
 });
  ````
+
+````javascript
+
+$('#block').getScripts(["one.js", "two.js", "three.js"]).on(('ready', function (e, failed) {
+    // example
+});
+
+````
+
 
 There's no support for this plug-in.
