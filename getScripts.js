@@ -8,7 +8,6 @@
 	"use strict";
 
 	$.fn.getScripts = function (scripts, css) {
-		// placeholder
 		var o = {
 			i: 0,
 			el: this, // jQuery collection
