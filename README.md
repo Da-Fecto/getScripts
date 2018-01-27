@@ -1,5 +1,5 @@
 # getScripts
-Scriptloading with jQuery getScript for multiple scripts. 
+Scriptloading with jQuery getScript for multiple scripts that fires a ready event on a jQuery element(s). 
 
 * Uses jQuery scrip loader.
 * Keeps track of loaded scripts (no double script load)
