@@ -7,6 +7,14 @@ Scriptloading with jQuery getScript for multiple scripts.
 ### usage:
 
 ````javascript
+/**
+ * Scriptloader
+ *
+ * First attach listeners, then call the plug-in with an array
+ * of javascripts to load.
+ */
+
+
 // Listen to 'ready' event 
 $("#block").on('ready', function (e, failed) {
     // @var Event e
