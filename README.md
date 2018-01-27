@@ -22,7 +22,7 @@ $('#block').getScripts(["one.js", "two.js", "three.js"]);
 
 ````javascript
 
-$('#block')on('ready', function (e, failed) {
+$('#block').on('ready', function (e, failed) {
     // example
 }).getScripts(["one.js", "two.js", "three.js"]);
 
