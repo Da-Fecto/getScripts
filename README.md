@@ -10,16 +10,14 @@ Scriptloading with jQuery getScript for multiple scripts.
 /**
  * Scriptloader
  *
- * First attach listeners, then call the plug-in with an array
- * of javascripts to load.
+ * First attach listeners then call the plug-in with an array
+ * of javascripts.
  */
-
 
 // Listen to 'ready' event 
 $("#block").on('ready', function (e, failed) {
     // @var Event e
-    // @var array failed Array with scripts not loaded. mostly 404's
-    
+    // @var array failed Array with scripts not loaded. mostlikely 404's
     // @var this The actual DomNode
     // Do something with loaded scripts.
 });
