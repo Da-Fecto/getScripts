@@ -23,7 +23,8 @@ $("#block").on('ready', function (e, failed) {
 });
 
 // load scripts, then fires 'ready' event on jQuery element.
-$('#block').getScripts(["one.js", "two.js", "three.js"]);
+// Optionally css styles to apply after 'ready' event is fired on jQuery element.
+$('#block').getScripts(["one.js", "two.js", "three.js"], {"background": "red"});
  ````
 
 ````javascript
