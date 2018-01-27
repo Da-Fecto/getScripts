@@ -7,9 +7,6 @@ Scriptloading with jQuery getScript for multiple scripts.
 ### usage:
 
 ````javascript
-// load scripts, then fires 'ready' event on jQuery element.
-$('#block').getScripts(["one.js", "two.js", "three.js"]);
-
 // Listen to 'ready' event 
 $("#block").on('ready', function (e, failed) {
     // @var Event e
@@ -18,6 +15,9 @@ $("#block").on('ready', function (e, failed) {
     // @var this The actual DomNode
     // Do something with loaded scripts.
 });
+
+// load scripts, then fires 'ready' event on jQuery element.
+$('#block').getScripts(["one.js", "two.js", "three.js"]);
  ````
 
 ````javascript
