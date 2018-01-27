@@ -1,85 +1,63 @@
 /**
- * Get Scripts
- *
- *	// load scripts
- *	$('#block').getScripts(["one.js", "two.js", "three.js"]);
- *
- * 	// Listen to event
- * 	$("#block").on('ready', function (e, failed) {
- *		// @var Event e
- *		// @var array failed Array with scripts not loaded. mostly 404's
- *	});
- *
- * @author: Martijn Geerts
- *
+ * jQuery Plugin getScripts
+ * 
+ * @description jQuery scripts loader
+ * @author ©2018 Martijn Geerts
  */
 ;(function ($, window, document, undefined) {
-
 	"use strict";
 
-	$.fn.getScripts = function (scripts) {
+	$.fn.getScripts = function (scripts, css) {
 		// placeholder
 		var o = {
-			i: 0, // iterator, o.execute
-			u: 0, // iterator, o.makeUnique
+			i: 0,
 			el: this, // jQuery collection
-			div: null, // temporary DomNode, o.ready
-			trigger: false, // Ready Event fired?
-			count: scripts.length, // Amount of scripts
+			css: function () {
+				return $.isPlainObject(css) ? css : {};
+			}(),
+			count: scripts.length,
+			loaded: [],
 			failed: []
 		};
 
-		o.ready = function () {
-			o.div = this;
-			if (!o.div.getAttribute("ready")) {
-				o.div.setAttribute("ready", true);
-				o.div.style.display = "";
-				o.div.style.length || (o.div.removeAttribute("style"));
-				$(o.div).trigger("ready", [o.failed]);
+		o.getFilename = function (filename) {
+			var a = document.createElement("a");
+			a.href = filename;
+			return a.href.split("?")[0];
+		};
+
+		o.triggerDone = function () {
+			o.file = this.url === undefined ? o.fail : this.url;
+			o.file = o.getFilename(o.file);
+			if (++o.i === o.loaded.length) {
+				o.el.css(o.css);
+				o.el.trigger("ready", [o.failed]);
 			}
 		};
 
-		o.execute = function () {
-			if (++o.i === o.count) {
-				o.el.each(o.ready);
-			}
+		o.triggerFail = function () {
+			o.fail = o.getFilename(this.url);
+			o.failed.push(o.fail);
+			o.triggerDone();
 		};
 
-		o.fail = function () {
-			o.failed.push(this.url.split("?")[0]);
-			o.execute(this);
-		};
+		window.config = window.config || {};
+		window.config.gotScripts = window.config.gotScripts || [];
 
-		o.buildConfig = function () {
-			window.config = window.config || {};
-			window.config.requested = window.config.requested || [];
-		};
-
-		o.buildConfig();
-
-		$.each(scripts, function (i) {
-			o.file = String(this);
-
-			// Not found, load it
-			if (window.config.requested.indexOf(o.file) === -1) {
-				// Load
-				$.getScript(this).done(o.execute).fail(o.fail);
-				// And register
-				window.config.requested.push(o.file);
-				o.trigger = true;
-
-			} else {
-				// Remove from length
-				o.count -= 1;
-			}
-
-			// When no files needed to load trigger the ready
-			if (!o.trigger && !o.trigger && i + 1 === scripts.length) {
-				o.el.each(o.ready);
+		$.each(scripts, function () {
+			o.file = o.getFilename(this);
+			if (window.config.gotScripts.indexOf(o.file) === -1) {
+				$.getScript(o.file).done(o.triggerDone).fail(o.triggerFail);
+				window.config.gotScripts.push(o.file);
+				o.loaded.push(o.file);
 			}
 		});
 
+		if (o.loaded.length === 0) {
+			o.el.css(o.css);
+			o.el.trigger("ready", [o.failed]);
+		}
 		return o.el;
 	};
-	
-})(jQuery, window, document);
+
+}(jQuery, window, document));
