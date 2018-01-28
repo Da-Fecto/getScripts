@@ -17,8 +17,8 @@ Scriptloading with jQuery getScript for multiple scripts that fires a ready even
 // Listen to 'ready' event 
 $("#block").on('ready', function (e, failed) {
     // @var Event e
-    // @var array failed Array with scripts not loaded. mostlikely 404's
-    // @var this The actual DomNode
+    // @var array failed Array with scripts not loaded. mostlikely 404's.
+    // @var this The actual DomNode for which the scripts are ready.
     // Do something with loaded scripts.
 });
 
