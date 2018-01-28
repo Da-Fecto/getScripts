@@ -10,6 +10,7 @@
 	$.fn.getScripts = function (scripts, css) {
 		var o = {
 			i: 0,
+			a: document.createElement("a"),
 			el: this, // jQuery collection
 			css: function () {
 				return $.isPlainObject(css) ? css : {};
@@ -22,9 +23,8 @@
 		var f = {};
 
 		f.getFilename = function (filename) {
-			var a = document.createElement("a");
-			a.href = filename;
-			return a.href.split("?")[0];
+			o.a.href = filename;
+			return o.a.href.split("?")[0];
 		};
 
 		f.triggerDone = function () {
