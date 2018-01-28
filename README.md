@@ -24,24 +24,24 @@ var files = ["first.js", "second.js"];
  * Example 1
  * 
  * Files get loaded:
- * - Then 'ready' event is fired on element $(".first").
+ * - Then 'ready' event is fired on element $(".element").
  */
-$(".first").getScripts(files);
+$(".element").getScripts(files);
 
 /**
  * Example 2
  * 
  * Files get loaded:
- * - Then 'ready' event is fired on element $(".first").
- * - And styles are applied to $(".first").
+ * - Then 'ready' event is fired on element $(".element").
+ * - And styles are applied to $(".element").
  */
-$(".first").getScripts(files, {"background-color": "red"});
+$(".element").getScripts(files, {"background-color": "red"});
 
 /**
  * Example 3
  * 
  * Files get loaded:
- * - Then 'ready' event is fired on element $(".first").
+ * - Then 'ready' event is fired on element $(".element").
  * - And callback function is called (with DOMElement as this).
  */
 var myCallback = function () {
@@ -49,24 +49,24 @@ var myCallback = function () {
 	console.log(this)
 };
  
-$(".first").getScripts(files, myCallback);
+$(".element").getScripts(files, myCallback);
 
 /**
  * Example 4
  * 
  * Files get loaded:
- * - Then 'ready' event is fired on element $(".first").
- * - And styles are applied to $(".first").
+ * - Then 'ready' event is fired on element $(".element").
+ * - And styles are applied to $(".element").
  * - And callback function is called (with DOMElement as this).
  */
-$(".first").getScripts(files, {"background-color": "red"}, myCallback);
+$(".element").getScripts(files, {"background-color": "red"}, myCallback);
 
 ````
 ### Listening for ready event & callback function
 
 ````javascript
 // Listening for ready event
-$(".first").on("ready", function (e, failed) {
+$(".element").on("ready", function (e, failed) {
 	// ready event, scripts are loaded
 	console.log(e);
 	
@@ -91,7 +91,7 @@ The listeners should be set prior to the script loading.
 
 ````javascript
 // Listening for ready event
-$(".first").on("ready", function (e, failed) {
+$(".element").on("ready", function (e, failed) {
 	// Do something
 }).getScripts(["first.js", "second.js"]);
 ````
