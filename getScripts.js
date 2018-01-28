@@ -21,7 +21,6 @@
 
 		var f = {};
 
-
 		f.ready = function() {
 			o.el.css(o.css);
 			o.el.trigger("ready", [o.failed]);
