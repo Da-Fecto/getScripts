@@ -87,7 +87,7 @@ var myCallback = function () {
 
 ### Important.
 
-The listeners should be set prior to the scrpt loading part.
+The listeners should be set prior to the script loading.
 
 ````javascript
 // Listening for ready event
