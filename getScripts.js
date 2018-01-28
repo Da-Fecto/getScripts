@@ -12,9 +12,9 @@
 			i: 0,
 			a: document.createElement("a"),
 			el: this, // jQuery collection
-			css: function () {
-				return $.isPlainObject(css) ? css : {};
-			}(),
+			css: $.isPlainObject(css) 
+				? css 
+				: {},
 			count: scripts.length,
 			loaded: [],
 			failed: []
@@ -55,7 +55,7 @@
 		});
 
 		if (o.loaded.length === 0) {
-			o.el.css(o.css);
+			console.log(o.css)
 			o.el.trigger("ready", [o.failed]);
 		}
 		return o.el;
