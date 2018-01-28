@@ -7,20 +7,30 @@
 ;(function ($, window, document, undefined) {
 	"use strict";
 
-	$.fn.getScripts = function (scripts, css) {
+	$.fn.getScripts = function (scripts, css, callback) {
 		var o = {
 			i: 0,
 			a: document.createElement("a"),
 			el: this, // jQuery collection
-			css: $.isPlainObject(css) 
-				? css 
-				: {},
+			css: null,
+			callback: null,
 			count: scripts.length,
 			loaded: [],
 			failed: []
 		};
 
 		var f = {};
+
+
+		f.ready = function() {
+			o.el.css(o.css);
+			o.el.trigger("ready", [o.failed]);
+			if (o.callback) {
+				o.el.each(function() {
+					o.callback.apply(this, [o.failed]);
+				});
+			}
+		};
 
 		f.getFilename = function (filename) {
 			o.a.href = filename;
@@ -31,8 +41,7 @@
 			o.file = this.url === undefined ? o.fail : this.url;
 			o.file = f.getFilename(o.file);
 			if (++o.i === o.loaded.length) {
-				o.el.css(o.css);
-				o.el.trigger("ready", [o.failed]);
+				f.ready();
 			}
 		};
 
@@ -45,6 +54,14 @@
 		window.config = window.config || {};
 		window.config.gotScripts = window.config.gotScripts || [];
 
+		if ($.isFunction(css)) {
+			o.css = {};
+			o.callback = css;
+		} else if ($.isPlainObject(css) || css === undefined) {
+			o.css = $.isPlainObject(css) ? css : {};
+			o.callback = $.isFunction(callback) ? callback : null;
+		}
+
 		$.each(scripts, function () {
 			o.file = f.getFilename(this);
 			if (window.config.gotScripts.indexOf(o.file) === -1) {
@@ -55,8 +72,7 @@
 		});
 
 		if (o.loaded.length === 0) {
-			console.log(o.css)
-			o.el.trigger("ready", [o.failed]);
+			f.ready();
 		}
 		return o.el;
 	};
