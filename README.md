@@ -1,8 +1,10 @@
 # getScripts
 
-Scriptloading with jQuery getScript for multiple scripts. When all scripts are loaded a 'ready' event is fired on the jQuery element. The this context of the ready event will be the actual DomNode.
+Scriptloading with jQuery getScript for multiple scripts. When all scripts are loaded a 'ready' event is fired on the jQuery element. The this context of the ready event will be the actual DomNode. 
 
 Optionally, specify a callback script. When all scripts are loaded this callback will be executed with the DomNode as this context.
+
+You can provide the getScripts plugin with a CSS style object. When scriploading is complete these styles are applied on the jQuery element.
 
 ````javascript
 /**
