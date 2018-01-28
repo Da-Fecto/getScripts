@@ -89,9 +89,8 @@ var myCallback = function () {
 
 The listeners should be set prior to the scrpt loading part.
 
-````javascrip
+````javascript
 // Listening for ready event
-
 $(".first").on("ready", function (e, failed) {
 	// Do something
 }).getScripts(["first.js", "second.js"]);
