@@ -1,4 +1,4 @@
-#getScripts
+# getScripts
 
 Scriptloading with jQuery getScript for multiple scripts. When all scripts are loaded a 'ready' event is fired on the jQuery element. The this context of the ready event will be the actual DomNode.
 
