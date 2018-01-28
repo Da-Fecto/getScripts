@@ -8,9 +8,9 @@ Optionally, specify a callback script. When all scripts are loaded this callback
 /**
  * getScripts
  *
- * @prop array 				Required: array javascripts to load.
+ * @prop array 			Required: array javascripts to load.
  * @prop object|function 	Optional: css object or callback function 
- * @prop function 			Optional: callback function (css object must be set)
+ * @prop function 		Optional: callback function (css object must be set)
  */
 .getScripts(array, [object, function])
 ````
