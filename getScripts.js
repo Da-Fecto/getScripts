@@ -64,7 +64,7 @@
 		$.each(scripts, function () {
 			o.file = f.getFilename(this);
 			if (window.config.gotScripts.indexOf(o.file) === -1) {
-				$.getScript(o.file).done(f.triggerDone).fail(f.triggerFail);
+				$.getScript(this).done(f.triggerDone).fail(f.triggerFail);
 				window.config.gotScripts.push(o.file);
 				o.loaded.push(o.file);
 			}
